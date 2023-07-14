@@ -14,13 +14,13 @@ class Categoria {
     }
     set nome(value) {
         if (value == null || value == undefined) {
-            throw new Error(`${value} categoria é nulo ou inválido`);
+            throw new categoria_exception_1.CategoriaException.nullName();
         }
         if (value.trim().length < 3) {
-            throw new categoria_exception_1.CategoriaException.NomeTamanhoMinimoInvalido();
+            throw new categoria_exception_1.CategoriaException.invalidMinimalNameLength();
         }
         if (value.trim().length > 50) {
-            throw new categoria_exception_1.CategoriaException.NomeTamanhoMaximoInvalido();
+            throw new categoria_exception_1.CategoriaException.invalidMaximumNameLength();
         }
         this._nome = value;
     }

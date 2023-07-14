@@ -17,14 +17,14 @@ export class Categoria implements ICategoria {
   }
   private set nome(value: string) {
     if (value == null || value == undefined) {
-      throw new Error(`${value} categoria é nulo ou inválido`);
+      throw new CategoriaException.nullName();
     }
     if (value.trim().length < 3) {
-      throw new CategoriaException.NomeTamanhoMinimoInvalido();
+      throw new CategoriaException.invalidMinimalNameLength();
     }
 
     if (value.trim().length > 50) {
-      throw new CategoriaException.NomeTamanhoMaximoInvalido();
+      throw new CategoriaException.invalidMaximumNameLength();
     }
 
     this._nome = value;

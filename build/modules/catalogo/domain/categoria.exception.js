@@ -4,21 +4,29 @@ exports.CategoriaException = void 0;
 const domain_exception_1 = require("../../../shared/domain/domain.exception");
 var CategoriaException;
 (function (CategoriaException) {
-    class NomeTamanhoMinimoInvalido extends domain_exception_1.DomainException {
+    class invalidMinimalNameLength extends domain_exception_1.DomainException {
         constructor(message = "categoria não possui tamanho mínimo válido") {
             super(message);
-            (this.name = "CategoriaException.NomeTamahoMinimoInvalido"),
-                (this.message = message);
+            this.name = "CategoriaException.NomeTamahoMinimoInvalido";
+            this.message = message;
         }
     }
-    CategoriaException.NomeTamanhoMinimoInvalido = NomeTamanhoMinimoInvalido;
-    class NomeTamanhoMaximoInvalido extends domain_exception_1.DomainException {
+    CategoriaException.invalidMinimalNameLength = invalidMinimalNameLength;
+    class invalidMaximumNameLength extends domain_exception_1.DomainException {
         constructor(message = "O nome da categoria não possui tamanho máximo válido") {
             super(message);
-            (this.name = "CategoriaException.NomeTamahoMáximoInvalido"),
-                (this.message = message);
+            this.name = "CategoriaException.NomeTamahoMáximoInvalido";
+            this.message = message;
         }
     }
-    CategoriaException.NomeTamanhoMaximoInvalido = NomeTamanhoMaximoInvalido;
+    CategoriaException.invalidMaximumNameLength = invalidMaximumNameLength;
+    class nullName extends domain_exception_1.DomainException {
+        constructor(message = "O nome da categoria não pode ser nulo") {
+            super(message);
+            this.name = "CategoriaException.NomeTamahoMáximoInvalido";
+            this.message = message;
+        }
+    }
+    CategoriaException.nullName = nullName;
 })(CategoriaException || (exports.CategoriaException = CategoriaException = {}));
 //# sourceMappingURL=categoria.exception.js.map
