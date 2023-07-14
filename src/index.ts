@@ -1,9 +1,12 @@
 import { Categoria } from "./modules/catalogo/domain/categoria.entity";
+import { DomainException } from "./shared/domain/domain.exception";
 
-let categoria: Categoria;
 try {
-  categoria = Categoria.create({ nome: "Varejo" });
+  let categoria: Categoria;
+  categoria = Categoria.create({ nome: "Vo" });
   console.log(categoria);
 } catch (error: any) {
-  console.log(error.message);
+  if (error instanceof DomainException) {
+    console.log(error.message);
+  }
 }

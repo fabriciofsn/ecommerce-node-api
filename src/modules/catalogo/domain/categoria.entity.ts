@@ -1,4 +1,5 @@
 import { CreateCategoryProps, ICategoria } from "./categoria.type";
+import { CategoriaException } from "./categoria.exception";
 
 export class Categoria implements ICategoria {
   private _id: string;
@@ -19,11 +20,11 @@ export class Categoria implements ICategoria {
       throw new Error(`${value} categoria é nulo ou inválido`);
     }
     if (value.trim().length < 3) {
-      throw new Error(`A categória não possiu um tamanho válido`);
+      throw new CategoriaException.NomeTamanhoMinimoInvalido();
     }
 
     if (value.trim().length > 50) {
-      throw new Error("O nome da categoria ultrapassa o tamanho válido");
+      throw new CategoriaException.NomeTamanhoMaximoInvalido();
     }
 
     this._nome = value;
