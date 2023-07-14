@@ -13,7 +13,7 @@ export namespace CategoriaException {
 
   export class NomeTamanhoMaximoInvalido extends DomainException {
     constructor(
-      message: string = "O nome da categoria não possui tamanho mínimo válido"
+      message: string = "O nome da categoria não possui tamanho máximo válido"
     ) {
       super(message);
       (this.name = "CategoriaException.NomeTamahoMáximoInvalido"),

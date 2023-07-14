@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Categoria = void 0;
+const categoria_exception_1 = require("./categoria.exception");
 class Categoria {
     get id() {
         return this._id;
@@ -16,10 +17,10 @@ class Categoria {
             throw new Error(`${value} categoria é nulo ou inválido`);
         }
         if (value.trim().length < 3) {
-            throw new Error(`A categória não possiu um tamanho válido`);
+            throw new categoria_exception_1.CategoriaException.NomeTamanhoMinimoInvalido();
         }
         if (value.trim().length > 50) {
-            throw new Error("O nome da categoria ultrapassa o tamanho válido");
+            throw new categoria_exception_1.CategoriaException.NomeTamanhoMaximoInvalido();
         }
         this._nome = value;
     }
