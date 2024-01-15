@@ -1,0 +1,73 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Categoria {
+  id              String               @id @db.Uuid
+  nome            String               @db.VarChar(50)
+  dataCriacao     DateTime             @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime             @updatedAt @map("data_atualizacao")
+  produtos        ProdutosCategorias[]
+
+  @@map("categorias")
+}
+
+model ProdutosCategorias {
+  produto         Produto   @relation(fields: [produtoId], references: [id])
+  produtoId       String    @map("produto_id") @db.Uuid
+  categoria       Categoria @relation(fields: [categoriaId], references: [id])
+  categoriaId     String    @map("categoria_id") @db.Uuid
+  dataCriacao     DateTime  @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime  @updatedAt @map("data_atualizacao")
+
+  @@id([produtoId, categoriaId])
+  @@map("produtos_categorias")
+}
+
+model Produto {
+  id              String               @id @db.Uuid
+  nome            String               @db.VarChar(50)
+  descricao       String               @db.VarChar(200)
+  valor           Int
+  dataCriacao     DateTime             @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime             @updatedAt @map("data_atualizacao")
+  dataExclusao    DateTime?            @map("data_exclusao")
+  status          StatusProdutoPrisma  @default(ATIVO) @map("status_produto")
+  categorias      ProdutosCategorias[]
+
+  @@map("produtos")
+}
+
+enum StatusProdutoPrisma {
+  ATIVO
+  DESATIVO
+}
+
+
+///////////
+//Usuário//
+///////////
+
+model Usuario {
+  id                String   @id @db.Uuid
+  nome              String   @db.VarChar(50)
+  email             String   @unique
+  senha             String
+  tipo              TipoUsuarioPrisma @map("tipo_usuario")
+  dataCriacao       DateTime @default(now()) @map("data_criacao")
+  dataAtualizacao   DateTime @updatedAt @map("data_atualizacao")
+  @@map("usuarios")
+}
+
+enum TipoUsuarioPrisma {
+  CLIENTE
+  ADMINISTRADOR
+}

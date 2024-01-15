@@ -1,0 +1,30 @@
+@host = localhost
+@port = 3000
+@apiversion = api/v1
+
+### Recuperar Um Categoria por ID
+GET http://{{host}}:{{port}}/{{apiversion}}/categorias/9f513a1f-2510-4bd7-ba3c-95bade9b1271
+
+### Recuperar Todas as Categorias
+GET http://{{host}}:{{port}}/{{apiversion}}/categorias
+
+### Inserir Uma Categoria
+POST http://{{host}}:{{port}}/{{apiversion}}/categorias
+Content-type: application/json
+Authorization: Bearer <token>
+
+{
+    "nome":"Escritório"
+}
+
+### Atualizar Categoria
+PUT http://{{host}}:{{port}}/{{apiversion}}/categorias/b874dc31-5a75-4ea1-81c7-a2257b956dc4
+Content-type: application/json 
+
+{
+    "id": "b874dc31-5a75-4ea1-81c7-a2257b956dc4",
+    "nome":"Cozinha Americana"
+}
+
+### Deletar Categoria
+DELETE http://{{host}}:{{port}}/{{apiversion}}/categorias/14b6afe5-b4fb-4d26-b97d-cb72543eddf2
