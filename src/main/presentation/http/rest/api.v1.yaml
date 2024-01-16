@@ -1,0 +1,28 @@
+openapi: '3.0.2'
+info:
+  title: E-commerce Node API
+  version: '1.0'
+paths:
+  /categorias/{categoriaID}:
+    get:
+      tags:
+        - /categorias
+      description: >-
+        Recupera uma categoria por ID
+
+      parameters:
+        - name: categoriaID
+          in: path
+          description: >-
+            O Id da Categoria
+          required: true
+          schema:
+            $ref: '#/components/schemas/id'
+
+servers:
+  - url: '/api/v1'
+components:
+  schemas:
+    id:
+      type: string
+      pattern: '^[0-9a-fA-F]{24}$'

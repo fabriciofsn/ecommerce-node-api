@@ -6,6 +6,8 @@ import { customMorganMiddleware } from "./middlewares/custom-morgan.middleware";
 import { errorLogger } from "./middlewares/error-logger.middleware";
 import { errorResponder } from "./middlewares/error-responser.middleware";
 import { invalidPath } from "./middlewares/invalid-path.middleware";
+import { swaggerDocumentation } from "./costumizers/swagger-documentation.customizer";
+
 import cors from "cors";
 
 const createExpressApplication = async (): Promise<Application>  => {
@@ -20,7 +22,7 @@ const createExpressApplication = async (): Promise<Application>  => {
     app.use(helmet());
     app.use(compression());
     app.use(cors({
-        origin: ['http://localhost:5400', 'http://127.0.0.1:5400'],
+        origin: ['http://localhost:5401', 'http://127.0.0.1:5401'],
         optionsSuccessStatus: 200
     }));
 
@@ -29,6 +31,7 @@ const createExpressApplication = async (): Promise<Application>  => {
    
     //Middlewares de Rotas
     app.use('/api/v1', apiv1Router);
+    swaggerDocumentation(app);
 
     //Middleware de Tratamento de Erros (Error Handling)
     app.use(invalidPath);
